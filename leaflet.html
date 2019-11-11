@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+  <!-- See also: http://kempe.net/blog/2014/06/14/leaflet-pan-zoom-image.html -->
+  <head>
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <style>
+    #image-map {
+      width: 60%;
+      height: 500px;
+      border: 1px solid #ccc;
+      margin-bottom: 10px;
+    }
+
+.leaflet-popup-content-wrapper {
+  background: #C96B54;
+  color: #eee;
+  font-size: 12px;
+  line-height: 24px;
+  border-radius: 0px;
+  box-shadow: none;
+}
+
+.leaflet-popup-content-wrapper .leaflet-popup-content {
+}
+
+.leaflet-popup-close-button {
+  display:none;
+}
+
+.leaflet-popup-tip-container {
+  display: none;
+}
+    </style>
+  </head>
+  <body>
+    <div id="image-map"></div>
+    <button id="plus">+</button>
+    <button id="minus">-</button>
+
+    <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+    <script>
+    // Using leaflet.js to pan and zoom a big image.
+    // See also: http://kempe.net/blog/2014/06/14/leaflet-pan-zoom-image.html
+    // create the slippy map
+    var map = L.map('image-map', {
+      minZoom: 1,
+      maxZoom: 4,
+      center: [0, 0],
+      zoom: 2,
+      crs: L.CRS.Simple,
+      attributionControl:false,
+      zoomControl: false,
+      
+      
+
+    });
+    // dimensions of the image
+    var w = 1000,
+        h = 1000,
+        url = 'https://www.arthipo.com/image/cache/catalog/artists-painters/r/rene-magritte/rm137-rene-magritte-portrait-of-stephy-langui-1000x1000.jpg';
+    // calculate the edges of the image, in coordinate space
+    var southWest = map.unproject([0, h], map.getMaxZoom()-1);
+    var northEast = map.unproject([w, 0], map.getMaxZoom()-1);
+    var bounds = new L.LatLngBounds(southWest, northEast);
+    // add the image overlay, 
+    // so that it covers the entire map
+    L.imageOverlay(url, bounds).addTo(map);
+    // tell leaflet that the map is exactly as big as the image
+    map.setMaxBounds(bounds);
+
+    var myIcon = L.icon({
+    iconUrl: 'https://raw.githubusercontent.com/jaumecann/academia/master/img/infopoint.png',
+
+    iconSize:     [35, 35], // size of the icon
+    iconAnchor:   [15, 15], // point of the icon which will correspond to marker's location
+    popupAnchor:  [75, 40] // point from which the popup should open relative to the iconAnchor
+});
+
+L.marker([-18.5, 25.09], {icon:myIcon}).addTo(map).bindPopup("<b>Hello world!</b><br>I am a popup.").openPopup();
+    
+    </script>
+
+    <script>
+
+$(document).ready(function(){
+
+  $('#plus').click(function () {
+  	map.setZoom(map.getZoom()+1)
+  })
+  $('#minus').click(function () {
+  	map.setZoom(map.getZoom()-1)
+  })
+
+}); 
+    
+    
+    </script>
+
+  </body>
+</html>
+   

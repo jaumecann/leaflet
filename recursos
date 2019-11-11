@@ -1,0 +1,32 @@
+
+
+//image instead of map
+
+https://gist.github.com/longhotsummer/ba9c96bb2abb304e4095ce00df17ae2f
+
+https://kempe.net/blog/2014/06/14/leaflet-pan-zoom-image.html
+
+
+//remove attribution and zoom
+
+https://leafletjs.com/reference-1.5.0.html#control-attribution
+
+https://gis.stackexchange.com/questions/192088/how-to-remove-attribution-in-leaflet/192245
+
+// zoom extern
+
+http://jsfiddle.net/j7w9qure/
+
+// customized styles
+
+http://bl.ocks.org/uafrazier/d589caa322f1b1e7c651
+
+// custom popup?
+
+https://stackoverflow.com/questions/12606141/how-would-i-customise-the-look-and-feel-of-the-leaflet-popup
+
+
+https://gis.stackexchange.com/questions/262053/multiple-popup-styles-for-leaflet
+
+
+
